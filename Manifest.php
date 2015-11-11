@@ -12,7 +12,7 @@ class customers {
         'max-sephora' => '0.0.1',
         'icon' => '',
         'has_triggers' => 0,
-        'has_hooks' => 0
+        'has_hooks' => 1
     ];
     //Menus array
     public $menus = [
@@ -59,11 +59,11 @@ class customers {
         0 => [
             'action' => 'pageLoad'
         ]
-    ];
+    ];*/
     //Hooks declaration
     public $hooks = [
         0 => [
-            'container' => 'footer',
+            'container' => 'headerCss',
         ]
-    ];*/
+    ];
 }

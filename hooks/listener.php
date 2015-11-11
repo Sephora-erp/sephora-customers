@@ -1,6 +1,6 @@
 <?php
 
-class exampleHook{
+class customersHook{
     
     /*
      * This function is called when the hook is fired
@@ -9,5 +9,8 @@ class exampleHook{
      * @param {Object} $object - The data to pass to the hook
      */
     public function fireEvent($action, $object){
+        if($action == 'headerCss'){
+            echo '<link rel="stylesheet" href="'.URL::to('/').'/../app/modules/customers/public/customers.css">';
+        }
     }
 }
