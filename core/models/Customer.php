@@ -4,7 +4,7 @@ namespace App\modules\customers\core\models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Customers extends Model {
+class Customer extends Model {
 
     /**
      * The database table used by the model.

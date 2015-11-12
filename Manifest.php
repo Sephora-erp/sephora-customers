@@ -52,6 +52,26 @@ class customers {
             'type' => 'GET',
             'url' => '/customers/',
             'action' => '\App\modules\customers\core\controllers\CustomerController@actionList'
+        ],
+        2 => [
+            'type' => 'POST',
+            'url' => '/customers/new',
+            'action' => '\App\modules\customers\core\controllers\CustomerController@actionCreate'
+        ],
+        3 => [
+            'type' => 'GET',
+            'url' => '/customers/view/{id}',
+            'action' => '\App\modules\customers\core\controllers\CustomerController@actionView'
+        ],
+        4 => [
+            'type' => 'GET',
+            'url' => '/customers/update/{id}',
+            'action' => '\App\modules\customers\core\controllers\CustomerController@actionModify'
+        ],
+        5 => [
+            'type' => 'POST',
+            'url' => '/customers/update',
+            'action' => '\App\modules\customers\core\controllers\CustomerController@actionUpdate'
         ]
     ];
    /* //Triggers

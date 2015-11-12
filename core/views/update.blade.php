@@ -9,9 +9,10 @@ use App\Http\Helpers\HookHelper;
 <!-- Content Header (Page header) -->
 <!-- Main content -->
 <section class="content">
-    <h2 class="page-header"><i class="fa fa-user"></i> New Customer</h2>
-    <form action="{{URL::to('/customers/new')}}" method="post">
+    <h2 class="page-header"><i class="fa fa-user"></i> {{$customer->name}} {{$customer->lastname}} </h2>
+    <form action="{{URL::to('/customers/update')}}" method="post">
         {!! csrf_field() !!}
+        <input type="hidden" name="id" value="{{$customer->id}}"/>
         <div class="box box-default color-palette-box">
             <div class="box-header with-border">
                 <h3 class="box-title"><i class="fa fa-genderless"></i> Basic info</h3>
@@ -21,28 +22,28 @@ use App\Http\Helpers\HookHelper;
                     <div class="col-md-3">
                         <div class="form-group">
                             <label>Name</label>
-                            <input type="text" class="form-control" name="name"/>
+                            <input type="text" class="form-control" name="name" value="{{$customer->name}}" />
                         </div>
                     </div>
 
                     <div class="col-md-3">
                         <div class="form-group">
                             <label>Lastname</label>
-                            <input type="text" class="form-control" name="lastname"/>
+                            <input type="text" class="form-control" name="lastname" value="{{$customer->lastname}}" />
                         </div>
                     </div>
 
                     <div class="col-md-3">
                         <div class="form-group">
                             <label>NIF / DNI</label>
-                            <input type="text" class="form-control" name="cif"/>
+                            <input type="text" class="form-control" name="cif" value="{{$customer->cif}}" />
                         </div>
                     </div>
 
                     <div class="col-md-3">
                         <div class="form-group">
                             <label>Client type</label>
-                            <select class="form-control" name="status">
+                            <select class="form-control" name="status" value="{{$customer->status}}" >
                                 <option value="1">Potential customer</option>
                                 <option value="2">Customer</option>
                                 <option value="3">Ex-Customer</option>
@@ -65,49 +66,49 @@ use App\Http\Helpers\HookHelper;
                     <div class="col-md-3">
                         <div class="form-group">
                             <label>Adress</label>
-                            <input type="text" class="form-control" name="address"/>
+                            <input type="text" class="form-control" name="address" value="{{$customer->address}}" />
                         </div>
                     </div>
 
                     <div class="col-md-3">
                         <div class="form-group">
                             <label>Country</label>
-                            <input type="text" class="form-control" name="country"/>
+                            <input type="text" class="form-control" name="country" value="{{$customer->country}}" />
                         </div>
                     </div>
 
                     <div class="col-md-3">
                         <div class="form-group">
                             <label>City</label>
-                            <input type="text" class="form-control" name="city"/>
+                            <input type="text" class="form-control" name="city" value="{{$customer->city}}" />
                         </div>
                     </div>
 
                     <div class="col-md-3">
                         <div class="form-group">
                             <label>State</label>
-                            <input type="text" class="form-control" name="state"/>
+                            <input type="text" class="form-control" name="state" value="{{$customer->state}}" />
                         </div>
                     </div>
 
                     <div class="col-md-3">
                         <div class="form-group">
                             <label>Phone (1)</label>
-                            <input type="text" class="form-control" name="phone_1"/>
+                            <input type="text" class="form-control" name="phone_1" value="{{$customer->phone_1}}" />
                         </div>
                     </div>
 
                     <div class="col-md-3">
                         <div class="form-group">
                             <label>Phone (2)</label>
-                            <input type="text" class="form-control" name="phone_2"/>
+                            <input type="text" class="form-control" name="phone_2" value="{{$customer->phone_2}}" />
                         </div>
                     </div>
 
                     <div class="col-md-3">
                         <div class="form-group">
                             <label>Phone (3)</label>
-                            <input type="text" class="form-control" name="phone_3"/>
+                            <input type="text" class="form-control" name="phone_3" value="{{$customer->phone_3}}" />
                         </div>
                     </div>
 
@@ -118,7 +119,7 @@ use App\Http\Helpers\HookHelper;
         </div>
         <div class="box box-default color-palette-box">
             <div class="box-header with-border">
-                <h3 class="box-title"><i class="fa fa-commenting" name="note"></i> Other info</h3>
+                <h3 class="box-title"><i class="fa fa-commenting" name="note" value="{{$customer->note}}" ></i> Other info</h3>
             </div>
             <div class="box-body">
                 <div class="row">
@@ -136,7 +137,7 @@ use App\Http\Helpers\HookHelper;
             <!-- /.box-body -->
         </div>
         <p class="center">
-            <button type="submit" class="btn btn-xs btn-success"><i class="fa fa-save"></i> Save</button>
+            <button type="submit" class="btn btn-xs btn-warning"><i class="fa fa-pencil"></i> Save</button>
         </p>
     </form>
 </section>
