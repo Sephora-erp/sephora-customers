@@ -14,8 +14,9 @@ class CustomerController extends Controller {
      */
 
     public function actionList() {
+        $customers = Customer::all();
         view()->addLocation(app_path() . '/modules/customers/core/views');
-        return view('list');
+        return view('list',['customers' => $customers]);
     }
 
     /*
@@ -98,5 +99,4 @@ class CustomerController extends Controller {
             throw new \Exception('Customer not found');
         }
     }
-
 }
