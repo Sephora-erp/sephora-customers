@@ -7,6 +7,7 @@ use Illuminate\View\View;
 use App\modules\customers\core\models\Customer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Helpers\TriggerHelper;
 
 class CustomerController extends Controller {
     /*
@@ -16,7 +17,7 @@ class CustomerController extends Controller {
     public function actionList() {
         $customers = Customer::all();
         view()->addLocation(app_path() . '/modules/customers/core/views');
-        return view('list',['customers' => $customers]);
+        return view('list', ['customers' => $customers]);
     }
 
     /*
@@ -43,8 +44,12 @@ class CustomerController extends Controller {
             if ($key != '_token')
                 $customer->$key = $value;
         }
+        //Fire trigger before create customer
+        TriggerHelper::fireTrigger('customer-pre-create', $customer);
         //Save it to the database
         $customer->save();
+        //Fire trigger after create customer
+        TriggerHelper::fireTrigger('customer-post-create', $customer);
         //Go to the 'view' view
         return redirect('/customers/view/' . $customer->id);
     }
@@ -91,12 +96,37 @@ class CustomerController extends Controller {
                 if ($key != '_token' && $key != 'id')
                     $customer->$key = $value;
             }
+            //Fire trigger before update customer
+            TriggerHelper::fireTrigger('customer-pre-update', $customer);
             //Save it to the database
             $customer->save();
+            //Fire trigger after update customer
+            TriggerHelper::fireTrigger('customer-post-update', $customer);
             //Go to the 'view' view
             return redirect('/customers/view/' . $customer->id);
-        }else{
+        }else {
             throw new \Exception('Customer not found');
         }
     }
+
+    /*
+     * Deletes a customer using their id
+     * 
+     * @param {Integer} $id - The customer's uid
+     * 
+     * @return {Redirect} - Redirect to the customers list
+     */
+
+    public function actionDelete($id) {
+        //Fetch the customer
+        $customer = Customer::find($id);
+        //Fire trigger before delete customer
+        TriggerHelper::fireTrigger('customer-pre-delete', $customer);
+        $customer->delete();
+        //Fire trigger after delete customer
+        TriggerHelper::fireTrigger('customer-post-delete', $customer);
+        //Return to the customer's list
+        return redirect('/customers');
+    }
+
 }

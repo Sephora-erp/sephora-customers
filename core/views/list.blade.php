@@ -37,6 +37,7 @@ use App\Http\Helpers\HookHelper;
                                 <td>{{$customer->city}}</td>
                                 <td class="center">
                                     <a href="{{URL::to('/customers/view/'.$customer->id)}}" class="btn btn-xs btn-success"><i class="fa fa-eye"></i></a>
+                                    <a href="#" class="btn btn-xs btn-danger" onclick="deleteCustomer({{$customer->id}})"><i class="fa fa-trash"></i></a>
                                 </td>
                             </tr>
                             @endforeach
@@ -49,5 +50,19 @@ use App\Http\Helpers\HookHelper;
         </div>
     </div>
 </section>
+
+<script>
+            /*
+             * Ask's for delete confirmation, and, after, deletes the customer
+             */
+                    function deleteCustomer(id)
+                    {
+                    if (confirm("Are you sure do you want to delete this customer?")){
+                    window.location.href = "{{URL::to('/customers/delete/')}}/" + id;
+                    } else{
+
+                    }
+                    }
+</script>
 @stop
 

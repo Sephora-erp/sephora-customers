@@ -9,7 +9,13 @@ use App\Http\Helpers\HookHelper;
 <!-- Content Header (Page header) -->
 <!-- Main content -->
 <section class="content">
-    <h2 class="page-header"><i class="fa fa-user"></i> {{$customer->name}} {{$customer->lastname}} </h2>
+    <h2 class="page-header"><i class="fa fa-user"></i> {{$customer->name}} {{$customer->lastname}} 
+        <div class="pull-right">
+            <a class="btn btn-xs btn-warning" href="{{URL::to('/customers/update/'.$customer->id)}}"><i class="fa fa-pencil"></i> Modify</a>
+            <a href="#" class="btn btn-xs btn-danger" onclick="deleteCustomer({{$customer->id}})"><i class="fa fa-trash"></i> Delete</a>
+            <?php HookHelper::fireHook('customers-view-top-options', null); ?>
+        </div>
+    </h2>
     <form action="{{URL::to('/customers/new')}}" method="post">
         {!! csrf_field() !!}
         <div class="box box-default color-palette-box">
@@ -135,10 +141,21 @@ use App\Http\Helpers\HookHelper;
             </div>
             <!-- /.box-body -->
         </div>
-        <p class="center">
-            <a class="btn btn-xs btn-warning" href="{{URL::to('/customers/update/'.$customer->id)}}"><i class="fa fa-pencil"></i> Modify</a>
-        </p>
     </form>
 </section>
+
+<script>
+            /*
+             * Ask's for delete confirmation, and, after, deletes the customer
+             */
+                    function deleteCustomer(id)
+                    {
+                    if (confirm("Are you sure do you want to delete this customer?")){
+                    window.location.href = "{{URL::to('/customers/delete/')}}/" + id;
+                    } else{
+
+                    }
+                    }
+</script>
 @stop
 

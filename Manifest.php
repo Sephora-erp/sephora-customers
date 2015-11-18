@@ -72,6 +72,11 @@ class customers {
             'type' => 'POST',
             'url' => '/customers/update',
             'action' => '\App\modules\customers\core\controllers\CustomerController@actionUpdate'
+        ],
+        6 => [
+            'type' => 'GET',
+            'url' => '/customers/delete/{id}',
+            'action' => '\App\modules\customers\core\controllers\CustomerController@actionDelete'
         ]
     ];
    /* //Triggers
