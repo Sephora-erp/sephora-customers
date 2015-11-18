@@ -13,7 +13,7 @@ use App\Http\Helpers\HookHelper;
         <div class="pull-right">
             <a class="btn btn-xs btn-warning" href="{{URL::to('/customers/update/'.$customer->id)}}"><i class="fa fa-pencil"></i> Modify</a>
             <a href="#" class="btn btn-xs btn-danger" onclick="deleteCustomer({{$customer->id}})"><i class="fa fa-trash"></i> Delete</a>
-            <?php HookHelper::fireHook('customers-view-top-options', null); ?>
+            <?php HookHelper::fireHook('customers-view-top-options', $customer); ?>
         </div>
     </h2>
     <form action="{{URL::to('/customers/new')}}" method="post">
