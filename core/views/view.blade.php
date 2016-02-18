@@ -16,7 +16,6 @@ use App\Http\Helpers\HookHelper;
             <?php HookHelper::fireHook('customers-view-top-options', $customer); ?>
         </div>
     </h2>
-    <form action="{{URL::to('/customers/new')}}" method="post">
         {!! csrf_field() !!}
         <div class="box box-default color-palette-box">
             <div class="box-header with-border">
@@ -141,7 +140,11 @@ use App\Http\Helpers\HookHelper;
             </div>
             <!-- /.box-body -->
         </div>
-    </form>
+        
+        <?php
+        HookHelper::fireHook('afterCustomer', $customer);
+        ?>
+        
 </section>
 
 <script>
